@@ -1,0 +1,17 @@
+# AI agent / skills config
+.agents/
+.claude/
+CLAUDE.md
+skills-lock.json
+
+# Environment
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+*.md

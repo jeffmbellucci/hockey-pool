@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Authentication</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        button {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background: #b91c1c;
+        }
+        .success {
+            background: #16a34a;
+        }
+        .success:hover {
+            background: #15803d;
+        }
+        .info {
+            background: #f3f4f6;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            color: #1f2937;
+        }
+    </style>
+</head>
+<body>
+    <h1>🏒 Hockey Pool - Auth Manager</h1>
+    <div class="info">
+        <p><strong>Current Token:</strong></p>
+        <p id="token-display" style="word-break: break-all; font-family: monospace; font-size: 12px;"></p>
+    </div>
+    
+    <button onclick="clearAuth()">Clear Authentication Token</button>
+    <button class="success" onclick="window.location.reload()">Refresh Status</button>
+    
+    <div id="message" style="margin-top: 20px; font-weight: bold;"></div>
+
+    <script>
+        function displayToken() {
+            const token = localStorage.getItem('hockey_pool_token');
+            const display = document.getElementById('token-display');
+            if (token) {
+                display.textContent = token;
+                display.style.color = '#dc2626';
+            } else {
+                display.textContent = 'No token found';
+                display.style.color = '#16a34a';
+            }
+        }
+
+        function clearAuth() {
+            localStorage.removeItem('hockey_pool_token');
+            sessionStorage.clear();
+            document.getElementById('message').innerHTML = '✅ Authentication cleared! You can now close this tab and reload your app.';
+            document.getElementById('message').style.color = '#16a34a';
+            displayToken();
+        }
+
+        // Display token on load
+        displayToken();
+    </script>
+</body>
+</html>
+
